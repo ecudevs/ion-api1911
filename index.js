@@ -17,13 +17,19 @@ app.get("/productos", (req, res) => {
 });
 
 app.get("/productos/:idProducto", (req, res) => {
-  let idProducto = req.params.idProducto;
+  ProductoController.getProductoPorId(res, req.params.idProducto);
+});
 
-  let productoEncontrado = productos.find(productoIteracion => {
-    return productoIteracion._id == idProducto;
-  });
+app.post("/producto", (req, res) => {
+  ProductoController.insertarProducto(res, req.body);
+});
 
-  res.send({ producto: productoEncontrado });
+app.put("/producto", (req, res) => {
+  ProductoController.modificarProducto(res, req.body);
+});
+
+app.delete("/producto/:idProducto", (req, res) => {
+  ProductoController.eliminarProducto(res, req.params.idProducto);
 });
 
 app.post("/compra", (req, res) => {
