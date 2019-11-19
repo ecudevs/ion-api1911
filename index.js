@@ -2,11 +2,15 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const http = require("http");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const app = express();
 
 const productos = require("./constants");
 const ProductoController = require("./Controllers/ProductoController");
+
+app.use(cors());
+
 // configuramos body-parser para que capture
 // nuestros datos que llegan en formato json
 app.use(bodyParser.json());
